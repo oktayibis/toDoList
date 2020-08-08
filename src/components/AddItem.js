@@ -7,7 +7,7 @@ import {
   TouchableHighlight,
 } from 'react-native';
 
-export default function AddItem({handleAdd}) {
+export default function AddItem({route, navigation}) {
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [importance, setImportance] = useState(0);
@@ -34,7 +34,7 @@ export default function AddItem({handleAdd}) {
         />
         <TouchableHighlight
           style={styles.btn}
-          onPress={() => handleAdd(title, desc, importance)}>
+          onPress={() => route.params.handleAdd(title, desc, importance)}>
           <Text style={styles.btnText}>Add</Text>
         </TouchableHighlight>
       </View>
