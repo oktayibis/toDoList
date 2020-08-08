@@ -13,6 +13,7 @@ export default function AddItem({route, navigation}) {
   const [importance, setImportance] = useState(0);
   return (
     <View style={styles.container}>
+      <Text style={styles.title}>Add New To Do</Text>
       <View style={styles.header}>
         <TextInput
           placeholder="Enter Title"
@@ -28,6 +29,7 @@ export default function AddItem({route, navigation}) {
       </View>
       <View>
         <TextInput
+          multiline
           placeholder="Enter Desc"
           onChangeText={(text) => setDesc(text)}
           numberOfLines={10}
@@ -59,6 +61,8 @@ const styles = StyleSheet.create({
     marginVertical: 10,
     padding: 5,
     borderRadius: 5,
+
+    justifyContent: 'center',
   },
   header: {
     flexDirection: 'row',
@@ -95,5 +99,13 @@ const styles = StyleSheet.create({
   btnText: {
     color: 'black',
     textAlign: 'center',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: '600',
+    letterSpacing: 1.2,
+    marginBottom: 20,
+    textAlign: 'center',
+    color: '#ed6663',
   },
 });
