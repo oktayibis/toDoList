@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   input: {
+    minWidth: '20%',
     padding: 10,
     marginLeft: 5,
     borderColor: 'lightgrey',
