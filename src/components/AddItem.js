@@ -26,11 +26,19 @@ export default function AddItem({route, navigation}) {
           keyboardType="number-pad"
         />
       </View>
-      <View style={styles.header}>
+      <View>
         <TextInput
           placeholder="Enter Desc"
           onChangeText={(text) => setDesc(text)}
-          style={styles.input}
+          numberOfLines={10}
+          style={{
+            padding: 10,
+            marginLeft: 5,
+            borderColor: 'lightgrey',
+            borderWidth: 1,
+            marginTop: 10,
+            borderRadius: 10,
+          }}
         />
         <TouchableHighlight
           style={styles.btn}
@@ -66,11 +74,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   select: {
-    width: '30%',
     borderColor: 'lightgrey',
     borderWidth: 1,
     marginLeft: 10,
-    marginRight: 10,
+
     marginTop: 10,
     borderRadius: 10,
     padding: 10,
@@ -78,11 +85,11 @@ const styles = StyleSheet.create({
   btn: {
     backgroundColor: 'lightgrey',
     borderRadius: 10,
-    width: '30%',
+    width: '100%',
     marginLeft: 10,
     marginRight: 10,
     marginTop: 10,
-    padding: 10,
+    padding: 15,
   },
   btnText: {
     color: 'black',
