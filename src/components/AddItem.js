@@ -5,18 +5,21 @@ import {
   TextInput,
   StyleSheet,
   TouchableHighlight,
-  ActivityIndicator,
+  KeyboardAvoidingView,
+  Platform,
   Alert,
 } from 'react-native';
 import {connect, useDispatch} from 'react-redux';
-import {LOADING_START, LOADING_FINISH, UPDATE_LIST} from '../actions/type';
+import {UPDATE_LIST} from '../actions/type';
 function AddItem({route, navigation, loading, list}) {
   const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [importance, setImportance] = useState(0);
   return (
-    <View style={styles.container}>
+    <KeyboardAvoidingView
+      style={styles.container}
+      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
       <Text style={styles.title}>Add New To Do</Text>
       <View style={styles.header}>
         <TextInput
@@ -71,7 +74,7 @@ function AddItem({route, navigation, loading, list}) {
           <Text style={styles.btnText}>Add</Text>
         </TouchableHighlight>
       </View>
-      {loading && (
+      {/* {loading && (
         <ActivityIndicator
           size="large"
           style={{
@@ -80,8 +83,8 @@ function AddItem({route, navigation, loading, list}) {
             marginTop: 20,
           }}
         />
-      )}
-    </View>
+      )} */}
+    </KeyboardAvoidingView>
   );
 }
 

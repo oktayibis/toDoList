@@ -1,10 +1,4 @@
-import {
-  GET_LIST,
-  ADD_ITEM,
-  LOADING_START,
-  LOADING_FINISH,
-  UPDATE_LIST,
-} from '../actions/type';
+import {GET_LIST, UPDATE_LIST} from '../actions/type';
 
 const INITIAL_STATE = {
   list: [
@@ -56,7 +50,7 @@ export default (state = INITIAL_STATE, action) => {
 
       return {
         ...state,
-        list: [...state.list, obj],
+        list: [obj, ...state.list],
       };
 
     default:

@@ -6,17 +6,16 @@ import {
   StatusBar,
   FlatList,
   TouchableHighlight,
-  Alert,
+  KeyboardAvoidingView,
 } from 'react-native';
 import ListItem from './ListItem';
 import {connect} from 'react-redux';
 const Home: () => React$Node = ({navigation, list}) => {
-  const [data, setData] = useState([]);
-
+  // Render list item
   const renderRow = ({item}) => {
     return <ListItem key={item} item={item} />;
   };
-
+  // Add new button
   const AddNewButton = (pageName) => {
     const styles = StyleSheet.create({
       btn: {
@@ -45,22 +44,22 @@ const Home: () => React$Node = ({navigation, list}) => {
     );
   };
 
-  const refreshData = (data) => {
-    return data.reverse();
-  };
-  const handleAdd = (title, desc, importance) => {
-    let payload = {
-      id: data.length,
-      title,
-      desc,
-      importance,
-      date: '01/09/2020',
-    };
+  // const refreshData = (data) => {
+  //   return data.reverse();
+  // };
+  // const handleAdd = (title, desc, importance) => {
+  //   let payload = {
+  //     id: data.length,
+  //     title,
+  //     desc,
+  //     importance,
+  //     date: '01/09/2020',
+  //   };
 
-    setData((prevState) => [...prevState, payload]);
-    navigation.navigate('Home');
-    Alert.alert('Done!', 'Your todo added to list');
-  };
+  //   setData((prevState) => [...prevState, payload]);
+  //   navigation.navigate('Home');
+  //   Alert.alert('Done!', 'Your todo added to list');
+  // };
   return (
     <>
       <StatusBar barStyle="dark-content" />
@@ -68,7 +67,7 @@ const Home: () => React$Node = ({navigation, list}) => {
         <FlatList
           style={styles.list}
           keyExtractor={(item) => item.id.toString()}
-          data={refreshData(list)}
+          data={list}
           renderItem={renderRow}
           ListHeaderComponent={() => AddNewButton('AddItem')}
         />
