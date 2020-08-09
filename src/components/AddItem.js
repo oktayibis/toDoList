@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     borderColor: 'lightgrey',
     borderWidth: 1,
     marginLeft: 10,
-
+    minWidth: 100,
     marginTop: 10,
     borderRadius: 10,
     padding: 10,
