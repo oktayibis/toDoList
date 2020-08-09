@@ -9,42 +9,9 @@ import {
   Alert,
 } from 'react-native';
 import ListItem from './ListItem';
-
-const Home: () => React$Node = ({navigation}) => {
-  const [data, setData] = useState([
-    {
-      id: 0,
-      title: 'Hello 1',
-      desc:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce pulvinar hendrerit orci et accumsan. Morbi vel vulputate urna, et tempor nunc. Pellentesque hendrerit condimentum',
-      importance: 0,
-      date: '01/07/2020',
-    },
-    {
-      id: 1,
-      title: 'Hello 2',
-      desc:
-        'onec luctus sit amet est at porttitor. Donec non purus vel magna pellentesque porta nec id turpis. Sed pharetra justo turpis, eu finibus dolor ultrices a. Suspendisse potenti.',
-      importance: 1,
-      date: '01/03/2020',
-    },
-    {
-      id: 2,
-      title: 'Hello 3',
-      desc:
-        'Fusce pulvinar hendrerit orci et accumsan. Morbi vel vulputate urna, et tempor nunc. Pellentesque hendrerit condimentum tellus.',
-      importance: 1,
-      date: '01/07/2020',
-    },
-    {
-      id: 3,
-      title: 'Hello 4',
-      desc:
-        'Donec non purus vel magna pellentesque porta nec id turpis. Sed pharetra justo turpis, eu finibus dolor ultrices a. Suspendisse potenti.',
-      importance: 2,
-      date: '01/08/2020',
-    },
-  ]);
+import {connect} from 'react-redux';
+const Home: () => React$Node = ({navigation, list}) => {
+  const [data, setData] = useState([]);
 
   const renderRow = ({item}) => {
     return <ListItem key={item} item={item} />;
@@ -71,7 +38,7 @@ const Home: () => React$Node = ({navigation}) => {
     });
     return (
       <TouchableHighlight
-        onPress={() => navigation.navigate(pageName, {handleAdd})}
+        onPress={() => navigation.navigate(pageName)}
         style={styles.btn}>
         <Text style={styles.btnText}>Add New</Text>
       </TouchableHighlight>
@@ -101,7 +68,7 @@ const Home: () => React$Node = ({navigation}) => {
         <FlatList
           style={styles.list}
           keyExtractor={(item) => item.id.toString()}
-          data={refreshData(data)}
+          data={refreshData(list)}
           renderItem={renderRow}
           ListHeaderComponent={() => AddNewButton('AddItem')}
         />
@@ -121,4 +88,8 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Home;
+const mapStateToProps = ({listResponse}) => {
+  const {list} = listResponse;
+  return {list};
+};
+export default connect(mapStateToProps, {})(Home);

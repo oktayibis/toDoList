@@ -5,9 +5,13 @@ import {
   TextInput,
   StyleSheet,
   TouchableHighlight,
+  ActivityIndicator,
+  Alert,
 } from 'react-native';
-
-export default function AddItem({route, navigation}) {
+import {connect, useDispatch} from 'react-redux';
+import {LOADING_START, LOADING_FINISH, UPDATE_LIST} from '../actions/type';
+function AddItem({route, navigation, loading, list}) {
+  const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [importance, setImportance] = useState(0);
@@ -44,10 +48,39 @@ export default function AddItem({route, navigation}) {
         />
         <TouchableHighlight
           style={styles.btn}
-          onPress={() => route.params.handleAdd(title, desc, importance)}>
+          onPress={() => {
+            // route.params.handleAdd(title, desc, importance)
+            // if (!loading) {
+            //   dispatch({type: LOADING_START, payload: true});
+            // } else {
+            //   dispatch({type: LOADING_FINISH, payload: false});
+            // }
+            let day = new Date();
+            let obj = {
+              id: list.length,
+              title,
+              desc,
+              importance,
+              date:
+                day.getDate() + '/' + day.getMonth() + '/' + day.getFullYear(),
+            };
+            dispatch({type: UPDATE_LIST, payload: obj});
+            Alert.alert('Success', 'Your new todo added');
+            navigation.pop();
+          }}>
           <Text style={styles.btnText}>Add</Text>
         </TouchableHighlight>
       </View>
+      {loading && (
+        <ActivityIndicator
+          size="large"
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            marginTop: 20,
+          }}
+        />
+      )}
     </View>
   );
 }
@@ -109,3 +142,9 @@ const styles = StyleSheet.create({
     color: '#ed6663',
   },
 });
+
+const mapStateToProps = ({listResponse}) => {
+  const {list, loading} = listResponse;
+  return {list, loading};
+};
+export default connect(mapStateToProps, {})(AddItem);

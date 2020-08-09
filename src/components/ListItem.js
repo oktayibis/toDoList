@@ -58,6 +58,12 @@ export default function ListItem({item}) {
 }
 
 const findImportanceColor = (number) => {
+  if (number < 0) {
+    number = 0;
+  }
+  if (number > 2) {
+    number = 2;
+  }
   switch (number) {
     case 0:
       return '#bbd196';
@@ -71,6 +77,12 @@ const findImportanceColor = (number) => {
 };
 
 const findImportanceText = (number) => {
+  if (number < 0) {
+    number = 0;
+  }
+  if (number > 2) {
+    number = 2;
+  }
   switch (number) {
     case 0:
       return 'Low';
@@ -79,6 +91,6 @@ const findImportanceText = (number) => {
     case 2:
       return 'High';
     default:
-      return '#dddddd';
+      return 'Undefined';
   }
 };
