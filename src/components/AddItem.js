@@ -10,9 +10,9 @@ import {
   Alert,
 } from 'react-native';
 import {connect, useDispatch} from 'react-redux';
-import {UPDATE_LIST} from '../actions/type';
-function AddItem({route, navigation, loading, list}) {
-  const dispatch = useDispatch();
+import {updateList} from '../actions';
+function AddItem({route, navigation, updateList, list}) {
+  // const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [importance, setImportance] = useState(0);
@@ -69,7 +69,7 @@ function AddItem({route, navigation, loading, list}) {
               date:
                 day.getDate() + '/' + day.getMonth() + '/' + day.getFullYear(),
             };
-            dispatch({type: UPDATE_LIST, payload: obj});
+            updateList(obj);
             Alert.alert('Success', 'Your new todo added');
             navigation.pop();
           }}>
@@ -152,4 +152,4 @@ const mapStateToProps = ({listResponse}) => {
   const {list, loading} = listResponse;
   return {list, loading};
 };
-export default connect(mapStateToProps, {})(AddItem);
+export default connect(mapStateToProps, {updateList})(AddItem);
