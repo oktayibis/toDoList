@@ -19,7 +19,7 @@ function AddItem({route, navigation, loading, list}) {
   return (
     <KeyboardAvoidingView
       style={styles.container}
-      behavior={Platform.OS == 'ios' ? 'padding' : 'height'}>
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
       <Text style={styles.title}>Add New To Do</Text>
       <View style={styles.header}>
         <TextInput
@@ -29,6 +29,7 @@ function AddItem({route, navigation, loading, list}) {
         />
         <TextInput
           placeholder="Importance"
+          // eslint-disable-next-line radix
           onChangeText={(text) => setImportance(parseInt(text))}
           style={styles.select}
           keyboardType="number-pad"
@@ -40,6 +41,7 @@ function AddItem({route, navigation, loading, list}) {
           placeholder="Enter Desc"
           onChangeText={(text) => setDesc(text)}
           numberOfLines={10}
+          // eslint-disable-next-line react-native/no-inline-styles
           style={{
             padding: 10,
             marginLeft: 5,

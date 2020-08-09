@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -6,7 +6,6 @@ import {
   StatusBar,
   FlatList,
   TouchableHighlight,
-  KeyboardAvoidingView,
 } from 'react-native';
 import ListItem from './ListItem';
 import {connect} from 'react-redux';
