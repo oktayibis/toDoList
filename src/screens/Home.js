@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -7,9 +7,13 @@ import {
   FlatList,
   TouchableHighlight,
 } from 'react-native';
-import ListItem from './ListItem';
+import ListItem from '../components/ListItem';
 import {connect} from 'react-redux';
-const Home: () => React$Node = ({navigation, list}) => {
+import {getList} from '../actions';
+const Home: () => React$Node = ({navigation, list, getList}) => {
+  useEffect(() => {
+    getList();
+  }, []);
   // Render list item
   const renderRow = ({item}) => {
     return <ListItem key={item} item={item} />;
@@ -90,4 +94,4 @@ const mapStateToProps = ({listResponse}) => {
   const {list} = listResponse;
   return {list};
 };
-export default connect(mapStateToProps, {})(Home);
+export default connect(mapStateToProps, {getList})(Home);

@@ -11,7 +11,8 @@ import {
 } from 'react-native';
 import {connect, useDispatch} from 'react-redux';
 import {updateList} from '../actions';
-function AddItem({route, navigation, updateList, list}) {
+function AddItem(props) {
+  const dispatch = useDispatch();
   // const dispatch = useDispatch();
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
@@ -62,16 +63,16 @@ function AddItem({route, navigation, updateList, list}) {
             // }
             let day = new Date();
             let obj = {
-              id: list.length,
+              id: props.list.length,
               title,
               desc,
               importance,
               date:
                 day.getDate() + '/' + day.getMonth() + '/' + day.getFullYear(),
             };
-            updateList(obj);
+            props.updateList(obj);
             Alert.alert('Success', 'Your new todo added');
-            navigation.pop();
+            props.navigation.pop();
           }}>
           <Text style={styles.btnText}>Add</Text>
         </TouchableHighlight>

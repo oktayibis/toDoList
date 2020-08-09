@@ -3,7 +3,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Home from './screens/Home';
-import AddItem from './components/AddItem';
+import AddItem from './screens/AddItem';
 const Stack = createStackNavigator();
 function Router({navigation}) {
   return (
