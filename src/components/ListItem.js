@@ -37,9 +37,14 @@ export default function ListItem({item}) {
       color: '#4b5d67',
       fontSize: 10,
     },
-    important: {
+    importantContainer: {
       backgroundColor: findImportanceColor(item.importance),
-      padding: 5,
+      padding: 7,
+      borderRadius: 10,
+      minWidth: 150,
+    },
+    importantText: {
+      textAlign: 'center',
     },
   });
 
@@ -48,9 +53,11 @@ export default function ListItem({item}) {
       <Text style={styles.title}> {item.title} </Text>
       <Text style={styles.desc}> {item.desc} </Text>
       <View style={styles.content}>
-        <Text style={styles.important}>
-          Important: {findImportanceText(item.importance)}
-        </Text>
+        <View style={styles.importantContainer}>
+          <Text style={styles.importantText}>
+            Important: {findImportanceText(item.importance)}
+          </Text>
+        </View>
         <Text style={styles.date}>Added at: {item.date}</Text>
       </View>
     </View>
@@ -68,7 +75,7 @@ const findImportanceColor = (number) => {
     case 0:
       return '#bbd196';
     case 1:
-      return '#d9adad';
+      return '#ebdc87';
     case 2:
       return '#b52b65';
     default:
